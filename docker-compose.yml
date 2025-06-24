@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  asistente-financiero:
+    build: .
+    ports:
+      - "80:80"
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.asistente-financiero.rule=Host(`tu-dominio.com`)"
+      - "traefik.http.routers.asistente-financiero.tls=true"
+      - "traefik.http.routers.asistente-financiero.tls.certresolver=letsencrypt"
